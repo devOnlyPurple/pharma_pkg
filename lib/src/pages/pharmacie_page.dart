@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:pharmacie_pkg/src/classe/connect/connect_check.dart';
+
 import 'package:pharmacie_pkg/src/classe/localization/locales.dart';
 import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
 import 'package:pharmacie_pkg/src/helpers/constants/constant.dart';
@@ -52,7 +52,6 @@ class _PharmaPageState extends State<PharmaPage> {
   FocusNode _searchField = FocusNode();
 
   final TextEditingController _searching = TextEditingController();
-  final ConnectivityChecker _connectivity = ConnectivityChecker();
   Future<void> getPharaList(String latitude, String longitude) async {
     try {
       final Map<String, String> dataMenu = {
@@ -119,23 +118,23 @@ class _PharmaPageState extends State<PharmaPage> {
 
   Future<void> launchAllfunction() async {
     // varProvider.connectedStatus = 0;
-    bool isConnect = await _connectivity.checkInternetConnectivity();
-    if (isConnect) {
-      getPharaList(widget.latitude!, widget.longitude!);
+    // bool isConnect = await _connectivity.checkInternetConnectivity();
+    // if (isConnect) {
+    getPharaList(widget.latitude!, widget.longitude!);
 
-      // varProvider.connectedStatus = 1;
-    } else {
-      if (mounted) {
-        setState(() {
-          loadingStatus = 1;
-          errorStatus = 1;
-          listePharma = [];
-          listePharmaGarde = [];
-          listprochePharma = [];
-        });
-      }
-      // varProvider.connectedStatus = 2;
-    }
+    // varProvider.connectedStatus = 1;
+    // } else {
+    //   if (mounted) {
+    //     setState(() {
+    //       loadingStatus = 1;
+    //       errorStatus = 1;
+    //       listePharma = [];
+    //       listePharmaGarde = [];
+    //       listprochePharma = [];
+    //     });
+    //   }
+    //   // varProvider.connectedStatus = 2;
+    // }
   }
 
   bool _isSearching = false;

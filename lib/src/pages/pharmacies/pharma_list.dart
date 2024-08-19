@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../models/pharmas.dart';
-import '../../models/position_lat_long.dart';
-import 'pharma_methode.dart'; // Assurez-vous que le fichier pharma_methode.dart est correctement importé depuis le bon emplacement
+import 'package:pharmacie_pkg/src/models/pharmas.dart';
+import 'package:pharmacie_pkg/src/pages/pharmacies/pharma_methode.dart';
 
 class PharmaciesList extends StatefulWidget {
   final Size size;

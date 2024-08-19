@@ -1,11 +1,10 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:pharmacie_pkg/pharmacie_pkg.dart';
 import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
+import 'package:pharmacie_pkg/src/helpers/manager/api_manager.dart';
 import 'package:pharmacie_pkg/src/models/pharmacie_response.dart';
-
-import 'api_manager.dart';
-import 'dio_provider.dart';
 
 class ApiRepository {
 // reset_password

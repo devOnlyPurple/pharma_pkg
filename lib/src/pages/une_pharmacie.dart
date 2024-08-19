@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-
-import '../classe/localization/locales.dart';
-import '../helpers/constants/widget_constants.dart';
-import '../models/pharmas.dart';
-import '../models/position_lat_long.dart';
-import 'empty_page.dart';
+import 'package:pharmacie_pkg/src/classe/localization/locales.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/widget_constants.dart';
+import 'package:pharmacie_pkg/src/models/pharmas.dart';
+import 'package:pharmacie_pkg/src/pages/empty_page.dart';
 
 Widget listpharmaMethode(
   BuildContext context,
@@ -14,7 +12,6 @@ Widget listpharmaMethode(
   List<Pharmas> listePharma,
   bool isSearching,
   List<Pharmas> filteredList,
-  PositionLatLong? devicePosition,
   bool isScroll,
   int isConnected,
 ) {

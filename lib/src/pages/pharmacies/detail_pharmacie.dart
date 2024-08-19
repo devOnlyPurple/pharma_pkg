@@ -7,15 +7,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:iconsax/iconsax.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/constant.dart';
+import 'package:pharmacie_pkg/src/models/pharmas.dart';
+import 'package:pharmacie_pkg/src/widget/loading_widget.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../classe/connect/connect_check.dart';
 import '../../classe/localization/locales.dart';
-import '../../helpers/constants/constant.dart';
-import '../../models/pharmas.dart';
-import '../../models/position_lat_long.dart';
-import '../../widget/loading_widget.dart';
 
 class PharmacieDetails extends StatefulWidget {
   PharmacieDetails({super.key, required this.unePharmacie});
@@ -43,8 +41,6 @@ class _PharmacieDetailsState extends State<PharmacieDetails> {
   _launchMap(Uri url) async {
     await launchUrl(url);
   }
-
-  final ConnectivityChecker _connectivity = ConnectivityChecker();
 
   @override
   void initState() {
@@ -147,39 +143,37 @@ class _PharmacieDetailsState extends State<PharmacieDetails> {
                             Spacer(),
                             InkWell(
                                 onTap: () async {
-                                  bool isConnect = await _connectivity
-                                      .checkInternetConnectivity();
                                   CustomLoading(context,
                                       status: LocaleData.shareLoading
                                           .getString(context));
-                                  if (isConnect) {
-                                    final url =
-                                        Uri.parse(widget.unePharmacie!.photo!);
-                                    final response = await http.get(url);
-                                    Share.shareXFiles([
-                                      XFile.fromData(
-                                        response.bodyBytes,
-                                        name: widget.unePharmacie!.nom!,
-                                        mimeType: 'image/png',
-                                      ),
-                                    ],
-                                        subject: widget.unePharmacie!.nom!,
-                                        text:
-                                            "${widget.unePharmacie!.nom!}\n\n${LocaleData.phone.getString(context)} : $contact\n\n${LocaleData.adresse.getString(context)} : ${widget.unePharmacie!.adresse!}\n\n${LocaleData.geolocation.getString(context)}: ${widget.unePharmacie!.mapLink!}\n\n${LocaleData.withK.getString(context)} Kondjigbalẽ");
-                                    Navigator.pop(context);
-                                  } else {
-                                    final result = await Share.share(
-                                        "${widget.unePharmacie!.nom!}\n\n${LocaleData.phone.getString(context)}: $contact\n\n${LocaleData.adresse.getString(context)} : ${widget.unePharmacie!.adresse!}\n\n${LocaleData.geolocation.getString(context)}: ${widget.unePharmacie!.mapLink!}\n\n${LocaleData.withK.getString(context)} Kondjigbalẽ");
-                                    Navigator.pop(context);
 
-                                    if (result.status ==
-                                        ShareResultStatus.success) {
-                                      // _shareConseil(uneCategorieConseil.keyConseil!);
-                                      // Si le partage est réussi, cela signifie que l'utilisateur a appuyé sur le bouton de partage
-                                      print(
-                                          "L'utilisateur a partagé l'actualité");
-                                    }
-                                  }
+                                  final url =
+                                      Uri.parse(widget.unePharmacie!.photo!);
+                                  final response = await http.get(url);
+                                  Share.shareXFiles([
+                                    XFile.fromData(
+                                      response.bodyBytes,
+                                      name: widget.unePharmacie!.nom!,
+                                      mimeType: 'image/png',
+                                    ),
+                                  ],
+                                      subject: widget.unePharmacie!.nom!,
+                                      text:
+                                          "${widget.unePharmacie!.nom!}\n\n${LocaleData.phone.getString(context)} : $contact\n\n${LocaleData.adresse.getString(context)} : ${widget.unePharmacie!.adresse!}\n\n${LocaleData.geolocation.getString(context)}: ${widget.unePharmacie!.mapLink!}\n\n${LocaleData.withK.getString(context)} Kondjigbalẽ");
+                                  Navigator.pop(context);
+                                  // } else {
+                                  //   final result = await Share.share(
+                                  //       "${widget.unePharmacie!.nom!}\n\n${LocaleData.phone.getString(context)}: $contact\n\n${LocaleData.adresse.getString(context)} : ${widget.unePharmacie!.adresse!}\n\n${LocaleData.geolocation.getString(context)}: ${widget.unePharmacie!.mapLink!}\n\n${LocaleData.withK.getString(context)} Kondjigbalẽ");
+                                  //   Navigator.pop(context);
+
+                                  //   if (result.status ==
+                                  //       ShareResultStatus.success) {
+                                  //     // _shareConseil(uneCategorieConseil.keyConseil!);
+                                  //     // Si le partage est réussi, cela signifie que l'utilisateur a appuyé sur le bouton de partage
+                                  //     print(
+                                  //         "L'utilisateur a partagé l'actualité");
+                                  //   }
+                                  // }
                                 },
                                 child: Container(
                                   width: 30,
