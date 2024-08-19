@@ -18,11 +18,9 @@ import '../../models/position_lat_long.dart';
 import '../../widget/loading_widget.dart';
 
 class PharmacieDetails extends StatefulWidget {
-  PharmacieDetails(
-      {super.key, required this.unePharmacie, required this.devicePosition});
+  PharmacieDetails({super.key, required this.unePharmacie});
   Pharmas? unePharmacie;
 
-  PositionLatLong? devicePosition;
   @override
   State<PharmacieDetails> createState() => _PharmacieDetailsState();
 }

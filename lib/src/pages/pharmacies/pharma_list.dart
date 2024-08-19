@@ -9,7 +9,7 @@ class PharmaciesList extends StatefulWidget {
   final List<Pharmas> pharmacies;
   final bool isSearching;
   final List<Pharmas> filteredList;
-  PositionLatLong? devicePosition;
+
   final bool isScroll;
   final int isConnected;
 
@@ -19,7 +19,6 @@ class PharmaciesList extends StatefulWidget {
     required this.pharmacies,
     required this.isSearching,
     required this.filteredList,
-    required this.devicePosition,
     required this.isScroll,
     required this.isConnected,
   });
@@ -37,7 +36,6 @@ class _PharmaciesListState extends State<PharmaciesList> {
       widget.pharmacies,
       widget.isSearching,
       widget.filteredList,
-      widget.devicePosition,
       widget.isScroll,
       widget.isConnected,
     );

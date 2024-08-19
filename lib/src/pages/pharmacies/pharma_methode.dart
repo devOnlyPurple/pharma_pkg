@@ -17,7 +17,6 @@ Widget listpharmaMethode(
   List<Pharmas> listePharma,
   bool isSearching,
   List<Pharmas> filteredList,
-  PositionLatLong? devicePosition,
   bool isScroll,
   int isConnected,
 ) {
@@ -68,7 +67,6 @@ Widget listpharmaMethode(
                     context,
                     PharmacieDetails(
                       unePharmacie: unePharmacie,
-                      devicePosition: devicePosition,
                     ));
               },
               child: Row(

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'dart:async';
 import 'dart:convert';
@@ -14,17 +14,18 @@ import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
 import 'package:pharmacie_pkg/src/helpers/constants/constant.dart';
 import 'package:pharmacie_pkg/src/helpers/manager/api_repository.dart';
 import 'package:pharmacie_pkg/src/helpers/utils/class_utils.dart';
-import 'package:pharmacie_pkg/src/helpers/utils/lat_long.dart';
+
 import 'package:pharmacie_pkg/src/models/garde.dart';
 import 'package:pharmacie_pkg/src/models/pharmacie_response.dart';
 import 'package:pharmacie_pkg/src/models/pharmas.dart';
-import 'package:pharmacie_pkg/src/models/position_lat_long.dart';
+
 import 'package:pharmacie_pkg/src/pages/pharmacies/pharma_methode.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PharmaPage extends StatefulWidget {
-  PharmaPage({super.key});
-
+  PharmaPage({super.key, required this.latitude, required this.longitude});
+  String? latitude;
+  String? longitude;
   @override
   State<PharmaPage> createState() => _PharmaPageState();
 }
@@ -50,7 +51,6 @@ class _PharmaPageState extends State<PharmaPage> {
   double longitude = 0.0;
   FocusNode _searchField = FocusNode();
 
-  PositionAllInfo positionAllInfo = PositionAllInfo();
   final TextEditingController _searching = TextEditingController();
   final ConnectivityChecker _connectivity = ConnectivityChecker();
   Future<void> getPharaList(String latitude, String longitude) async {
@@ -121,8 +121,7 @@ class _PharmaPageState extends State<PharmaPage> {
     // varProvider.connectedStatus = 0;
     bool isConnect = await _connectivity.checkInternetConnectivity();
     if (isConnect) {
-      await loadDeviceInfo();
-      getPharaList(devicePosition!.latitude!, devicePosition!.longitude!);
+      getPharaList(widget.latitude!, widget.longitude!);
 
       // varProvider.connectedStatus = 1;
     } else {
@@ -151,12 +150,6 @@ class _PharmaPageState extends State<PharmaPage> {
   void dispose() {
     super.dispose();
     _searchField.dispose();
-  }
-
-  PositionLatLong? devicePosition;
-  loadDeviceInfo() async {
-    devicePosition = await PositionAllInfo().getDevicePosition();
-    print(devicePosition!.latitude);
   }
 
   @override
@@ -251,10 +244,7 @@ class _PharmaPageState extends State<PharmaPage> {
                   setState(() {
                     loadingStatus = 0;
                   });
-
-                  await loadDeviceInfo();
-                  getPharaList(
-                      devicePosition!.latitude!, devicePosition!.longitude!);
+                  getPharaList(widget.latitude!, widget.longitude!);
                 },
                 child: Container(
                   width: 30,
@@ -331,15 +321,8 @@ class _PharmaPageState extends State<PharmaPage> {
                   Br10(),
                   Container(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: listpharmaMethode(
-                          context,
-                          size,
-                          listePharmaGarde,
-                          _isSearching,
-                          filteredList,
-                          devicePosition,
-                          false,
-                          0)),
+                      child: listpharmaMethode(context, size, listePharmaGarde,
+                          _isSearching, filteredList, false, 0)),
                 ],
               ),
       ),
@@ -368,7 +351,6 @@ class _PharmaPageState extends State<PharmaPage> {
                 listprochePharma,
                 _isSearching,
                 filteredList,
-                devicePosition,
                 true,
                 0,
               ))
