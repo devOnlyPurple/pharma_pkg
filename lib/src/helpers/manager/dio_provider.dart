@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/services.dart';
-
-import '../constants/api_constant.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
 
 Future<Dio> getDio() async {
   Dio dio = Dio();

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
+import 'package:pharmacie_pkg/src/models/pharmacie_response.dart';
 
-import '../../models/pharmacie_response.dart';
-import '../constants/api_constant.dart';
 import 'api_manager.dart';
 import 'dio_provider.dart';
 
