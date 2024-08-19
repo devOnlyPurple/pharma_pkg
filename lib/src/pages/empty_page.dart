@@ -19,7 +19,7 @@ class EmptyPage extends StatelessWidget {
           Br50(),
           Br50(),
           Image.asset(
-            asset != null ? asset! : "assets/icons/empty2.gif",
+            asset != null ? asset! : "lib/assets/icons/empty2.gif",
             width: size.width,
             height: 250,
           ),

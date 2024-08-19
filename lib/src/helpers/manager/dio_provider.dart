@@ -11,7 +11,7 @@ Future<Dio> getDio() async {
   dio.options.headers['apiKey'] = API_KEY;
 
   // Ajout du certificat
-  ByteData cert = await rootBundle.load("assets/cert/kondjigbale.crt");
+  ByteData cert = await rootBundle.load("lib/assets/cert/kondjigbale.crt");
   dio.httpClientAdapter = IOHttpClientAdapter(
     createHttpClient: () {
       final SecurityContext scontext = SecurityContext();
