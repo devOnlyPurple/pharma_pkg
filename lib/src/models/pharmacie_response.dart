@@ -1,4 +1,4 @@
-import 'package:kondjigbale/models/Pharmacie.dart';
+import 'package:pharmacie_pkg/src/models/Pharmacie.dart';
 
 class PharmaciesResponse {
   String? status;

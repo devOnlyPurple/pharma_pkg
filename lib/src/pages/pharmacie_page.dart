@@ -8,20 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pharmacie_pkg/src/classe/connect/connect_check.dart';
+import 'package:pharmacie_pkg/src/classe/localization/locales.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/api_constant.dart';
+import 'package:pharmacie_pkg/src/helpers/constants/constant.dart';
+import 'package:pharmacie_pkg/src/helpers/manager/api_repository.dart';
+import 'package:pharmacie_pkg/src/helpers/utils/class_utils.dart';
+import 'package:pharmacie_pkg/src/helpers/utils/lat_long.dart';
+import 'package:pharmacie_pkg/src/models/garde.dart';
+import 'package:pharmacie_pkg/src/models/pharmacie_response.dart';
+import 'package:pharmacie_pkg/src/models/pharmas.dart';
+import 'package:pharmacie_pkg/src/models/position_lat_long.dart';
+import 'package:pharmacie_pkg/src/pages/pharmacies/pharma_methode.dart';
 import 'package:share_plus/share_plus.dart';
-
-import '../classe/connect/connect_check.dart';
-import '../classe/localization/locales.dart';
-import '../helpers/constants/api_constant.dart';
-import '../helpers/constants/constant.dart';
-import '../helpers/manager/api_repository.dart';
-import '../helpers/utils/class_utils.dart';
-import '../helpers/utils/lat_long.dart';
-import '../models/garde.dart';
-import '../models/pharmacie_response.dart';
-import '../models/pharmas.dart';
-import '../models/position_lat_long.dart';
-import 'une_pharmacie.dart';
 
 class PharmaPage extends StatefulWidget {
   PharmaPage({super.key});
@@ -57,19 +56,19 @@ class _PharmaPageState extends State<PharmaPage> {
   Future<void> getPharaList(String latitude, String longitude) async {
     try {
       final Map<String, String> dataMenu = {
-        'u_identifiant': '',
-        "registration_id": '',
+        'u_identifiant': 'V--8uOdQVBTgSdig0FB6Mfdt-lWDKXoL',
+        "registration_id": 'xxxxxxxxx',
         "lang": 'fr',
         "latMember": latitude,
         "longMember": longitude,
-        "device_id": '',
-        "device_name": '',
+        "device_id": 'xxxxxxx',
+        "device_name": 'xxxxxx',
       };
 
       print('start-api');
       PharmaciesResponse listeMenu = await ApiRepository.listPharma(dataMenu);
       print('end-api');
-      if (listeMenu.status == API_SUCCES_STATUS) {
+      if (listeMenu.status == '000') {
         if (mounted) {
           setState(() {
             print('startrecup');

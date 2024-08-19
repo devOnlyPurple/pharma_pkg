@@ -1,5 +1,7 @@
-import 'garde.dart';
-import 'pharmas.dart';
+// ignore_for_file: file_names
+
+import 'package:pharmacie_pkg/src/models/garde.dart';
+import 'package:pharmacie_pkg/src/models/pharmas.dart';
 
 class Pharmacie {
   List<Pharmas>? pharmas;
